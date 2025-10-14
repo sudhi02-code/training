@@ -1,1 +1,2 @@
-ApexProgram p = new ApexProgram();
+HttpGetClass ht = new HttpGetClass();
+ht.getHttp();
