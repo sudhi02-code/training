@@ -38,3 +38,6 @@ global  class AccountMgmt {
         return accList;
     }
 }
+
+rest callouts:
+
