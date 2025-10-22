@@ -39,5 +39,61 @@ global  class AccountMgmt {
     }
 }
 
-rest callouts:
+
+Autentication types in named credentials:
+
+
+
+restresource code in target org:
+@RestResource(urlMapping='/YourEndpoint')
+global with sharing class YourTargetClass {
+
+    // Inner class for request (optional)
+    global class RequestModel {
+        public String name;
+        public String phone;
+    }
+
+    // Inner class for response (optional)
+    global class ResponseModel {
+        public String status;
+        public String message;
+        public String error;
+    }
+
+    // -------------------
+    // POST method example
+    // -------------------
+    @HttpPost
+    global static ResponseModel createRecords() {
+        RestRequest req = RestContext.request;
+        RestResponse res = RestContext.response;
+        ResponseModel resp = new ResponseModel();
+
+        try {
+            // Parse incoming JSON
+            List<RequestModel> data = 
+                (List<RequestModel>) JSON.deserialize(req.requestBody.toString(), List<RequestModel>.class);
+
+            List<Account> accounts = new List<Account>();
+            for (RequestModel r : data) {
+                Account acc = new Account(Name=r.name, Phone=r.phone);
+                accounts.add(acc);
+            }
+
+            insert accounts;
+
+            resp.status = 'success';
+            resp.message = 'Inserted ' + accounts.size() + ' records';
+            res.statusCode = 201; // HTTP Created
+        } catch (Exception e) {
+            resp.status = 'error';
+            resp.error = e.getMessage();
+            res.statusCode = 500; // HTTP Internal Server Error
+        }
+
+        return resp;
+    }
+}
+
 
