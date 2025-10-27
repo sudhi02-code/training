@@ -95,5 +95,68 @@ global with sharing class YourTargetClass {
         return resp;
     }
 }
+ to fetch data using get:
+ @RestResource(urlMapping='/AccountAPI/*')
+global with sharing class AccountREST {
+
+    @HttpGet
+    global static Account getAccount() {
+        RestRequest req = RestContext.request;
+        String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
+        Account acc = [SELECT Id, Name, Phone FROM Account WHERE Id = :accountId LIMIT 1];
+        return acc;
+    }
+}
+
+Post Method:
+@RestResource(urlMapping='/AccountAPI/*')
+global with sharing class AccountREST {
+
+    global class AccountRequest {
+        public String Name;
+        public String Phone;
+    }
+
+    @HttpPost
+    global static Account createAccount() {
+        RestRequest req = RestContext.request;
+        AccountRequest accReq = (AccountRequest)JSON.deserialize(req.requestBody.toString(), AccountRequest.class);
+        Account acc = new Account(Name = accReq.Name, Phone = accReq.Phone);
+        insert acc;
+        return acc;
+    }
+}
+Put Method:
+@RestResource(urlMapping='/AccountAPI/*')
+global with sharing class AccountREST {
+
+    global class AccountUpdate {
+        public String Phone;
+    }
+
+    @HttpPatch
+    global static Account updateAccount() {
+        RestRequest req = RestContext.request;
+        String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
+        AccountUpdate accUpd = (AccountUpdate)JSON.deserialize(req.requestBody.toString(), AccountUpdate.class);
+        Account acc = [SELECT Id, Name, Phone FROM Account WHERE Id = :accountId LIMIT 1];
+        acc.Phone = accUpd.Phone;
+        update acc;
+        return acc;
+    }
+}
+Delete method:
+@RestResource(urlMapping='/AccountAPI/*')
+global with sharing class AccountREST {
+
+    @HttpDelete
+    global static String deleteAccount() {
+        RestRequest req = RestContext.request;
+        String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
+        Account acc = [SELECT Id FROM Account WHERE Id = :accountId LIMIT 1];
+        delete acc;
+        return 'Account deleted successfully';
+    }
+}
 
 
