@@ -1,4 +1,30 @@
 java script:
+@api_____:
+without Api:
+html:
+<template>
+    <div> Message:{message}</div>
+    <div> RecordId:{recordId}</div>
+</template>
+js:
+import { LightningElement } from 'lwc';
+
+export default class FirstApiExample extends LightningElement {
+ message ='First Lwc Component';
+ recordId;
+}
+you can only get msg but not id as it is in private
+with API
+same code but one change
+in js file addd @api
+import { LightningElement ,api} from 'lwc';
+
+export default class FirstApiExample extends LightningElement {
+ message ='First Lwc Component';
+  @api recordId;
+}
+
+
 
 for...of Loop (for arrays)
 
