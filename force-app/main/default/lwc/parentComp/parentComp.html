@@ -1,0 +1,9 @@
+<template>
+    <div style="border:2px solid #0070d2; padding:10px; border-radius:8px;">
+        <p><strong>Parent Message:</strong> {parentMessage}</p>
+        <lightning-button label="Change Message" onclick={handleChangeMessage}></lightning-button>
+
+        <!-- Send message to child -->
+        <c-child-comp message-from-parent={parentMessage}></c-child-comp>
+    </div>
+</template>
