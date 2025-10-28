@@ -13,7 +13,6 @@ export default class WireExample extends LightningElement {
         if(!this.record.data){
             return 'Loading...';
         }
-    
         return getFieldValue(this.record.data,NAME_FIELD);  
     
     }
