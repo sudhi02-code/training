@@ -1,6 +1,7 @@
 java script:
 @api_____:
 without Api:
+
 html:
 <template>
     <div> Message:{message}</div>
@@ -23,6 +24,8 @@ export default class FirstApiExample extends LightningElement {
  message ='First Lwc Component';
   @api recordId;
 }
+
+2.@wire____:
 
 
 
