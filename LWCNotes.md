@@ -1,4 +1,13 @@
 java script:
+
+Order of Lifecycle Hooks Execution
+Stage	Hook	When it Runs	Common Use
+🟢 1. Creation	constructor()	When component instance is created	Initialize variables, set defaults
+🔵 2. Insertion into DOM	connectedCallback()	When component is inserted into DOM	Call APIs, start data loading (wire, imperative Apex)
+🟣 3. First Render	render()	Before the component renders	Control which template to render (rarely used)
+🟢 4. After Render	renderedCallback()	After the template is rendered in DOM	Access DOM elements, run DOM manipulation, timers
+🔴 5. Removal	disconnectedCallback()	When component is removed from DOM	Cleanup (clear intervals, remove listeners)
+🟠 6. Error Handling	errorCallback(error, stack)	When an error occurs in a child component	Handle child errors gracefully
 @api_____:
 without Api:
 
