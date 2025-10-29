@@ -97,8 +97,12 @@ let Hello=()=>{
 Console.log('welcome');
 }
 
+const user = { name: "Sudeeshna" };
+user.name = "Developer"; // ✅ allowed
+
 📘 In LWC: You’ll often use const for constants and let for variables
 5. Destructuring Assignment
+Destructuring is a special ES6 syntax that allows you to extract values from arrays or objects into separate variables
 
 Extract values from arrays or objects into variables easily.
 
@@ -114,6 +118,12 @@ console.log(name); // Sudeeshna
 const colors = ["red", "green", "blue"];
 const [first, second] = colors;
 console.log(first); // red
+2____________
+const fruits = ["apple"];
+const [a, b = "banana"] = fruits;
+
+console.log(a); // apple
+console.log(b); // banana (default used)
 
 
 📘 In LWC: Common when working with objects or Apex responses.
@@ -241,9 +251,105 @@ export default class MyButtons extends LightningElement {
     }
   };
 }
+why do we not use this .carname in the below code
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Functions</h1>
+
+<p>Outside myFunction() carName is undefined.</p>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+let text = "Outside: " + typeof carName;
+document.getElementById("demo1").innerHTML = text;
+
+function myFunction() {
+  let carName = "Volvo";
+  let text = "Inside: " + typeof carName + " " + carName; 
+  document.getElementById("demo2").innerHTML = text;
+}
+
+myFunction();
+</script>
+
+</body>
+</html>
+
 
 💬 Behavior:
 
 Click Save → shows “✅ Data Saved!”
 
 Click Cancel → shows “❌ Cancelled!”
+because when we need to print the values outside the function then only we need to use the this.value
+
+why we need arrow function:
+import { LightningElement } from 'lwc';
+
+export default class Demo extends LightningElement {
+    message = 'Hello LWC!';
+
+    handleClick() {
+        console.log(this.message); // ✅ Works — prints "Hello LWC!"
+    }
+}
+handleClick() {
+    setTimeout(function () {
+        console.log(this.message); // ❌ undefined
+    }, 1000);
+}
+here inside other function we cannot use the this in normal methods this can be sloved by using arrow function
+import { LightningElement } from 'lwc';
+
+export default class MyComp extends LightningElement {
+    message = 'Hello LWC!';
+
+    handleClick() {
+        setTimeout(() => {
+            console.log(this.message); // ✅ "Hello LWC!"
+        }, 1000);
+    }
+}
+spread operator___________: used when we want to copy elements and merger ,add multiple values
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const merged = [...arr1, ...arr2];
+console.log(merged); // [1, 2, 3, 4]
+Used to copy or update objects:
+const user = { name: "Sudeeshna", age: 22 };
+const updatedUser = { ...user, city: "Hyderabad" };
+console.log(updatedUser);
+output:{name:"sudeeshna",age:22,city:"Hyderabad"};
+function sum(a, b, c) {
+  return a + b + c;
+}
+const numbers = [10, 20, 30];
+console.log(sum(...numbers));  // 60
+
+REST OPERATOR ________:
+
+
+
+
+
+
+
+
+Map:
+const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);
+console.log(doubled); // [2, 4, 6]
+
+
+Filter:
+const ages = [15, 22, 18, 30];
+const adults = ages.filter(age => age >= 18);
+console.log(adults); // [22, 18, 30]
+Reduce:
+const nums = [1, 2, 3, 4];
+const sum = nums.reduce((total, n) => total + n, 0);
+console.log(sum); 
+here 0 means the initial value
