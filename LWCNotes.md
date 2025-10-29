@@ -126,3 +126,124 @@ Allows embedding variables and expressions directly into strings using backticks
 let name = "Sudeeshna";
 let city = "Hyderabad";
 console.log(`Hello ${name}, welcome to ${city}!`);
+
+
+Functions And Arrow functions:
+Normal Function:
+const person = {
+  name: "Sudeeshna",
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+
+person.sayName(); // Output: Sudeeshna
+Arrow Function:
+const person = {
+  name: "Sudeeshna",
+  sayName: () => {
+    console.log(this.name);
+  }
+};
+
+person.sayName(); // Output: undefined (because arrow function doesn’t have its own this)
+
+example 2:
+class Example {
+  constructor() {
+    this.name = "Sudeeshna";
+  }
+
+  normalFunction() {
+    setTimeout(function() {
+      console.log(this.name); // ❌ undefined
+    }, 1000);
+  }
+
+  arrowFunction() {
+    setTimeout(() => {
+      console.log(this.name); // ✅ "Sudeeshna"
+    }, 1000);
+  }
+}
+
+const obj = new Example();
+obj.normalFunction();
+obj.arrowFunction();
+here normal function can not get values because it can have only functional values it can not get from outside the function
+but arrow function get the values from out side but not from the same function
+
+example 2:
+class Student {
+  constructor() {
+    this.value = "Sudeeshna";
+  }
+
+  showValue = () => {
+    console.log(this.value);
+  };
+}
+
+const s1 = new Student();
+s1.showValue(); // ✅ Output: Sudeeshna
+In side an eventListener:
+Wrong Way (arrow function loses this)
+<button id="myBtn" value="Hello">Click Me</button>
+
+<script>
+  const button = document.getElementById("myBtn");
+
+  // ❌ Arrow function does NOT have its own 'this'
+  button.addEventListener("click", () => {
+    console.log(this.value); // undefined
+  });
+</script>
+
+✅ Correct Way (use event.target.value)
+<button id="myBtn" value="Hello">Click Me</button>
+
+<script>
+  const button = document.getElementById("myBtn");
+
+  button.addEventListener("click", (event) => {
+    console.log(event.target.value); // ✅ Output: Hello
+  });
+</script>
+
+
+⚠️ Reason:
+Inside an arrow function, this does not refer to the button.
+Instead, use event.target.value — this is the correct and safe approach.
+example____:
+Example 3 — In Lightning Web Component (LWC)
+🧩 HTML
+<template>
+  <lightning-button label="Save" value="Save" onclick={handleClick}></lightning-button>
+  <lightning-button label="Cancel" value="Cancel" onclick={handleClick}></lightning-button>
+
+  <p>Last Action: {action}</p>
+</template>
+
+🧩 JS
+import { LightningElement, track } from 'lwc';
+
+export default class MyButtons extends LightningElement {
+  @track action = '';
+
+  handleClick = (event) => {
+    this.action = event.target.value;  // ✅ gets the value of the clicked button
+    console.log("Button clicked:", this.action);
+
+    if (this.action === 'Save') {
+      console.log('✅ Data Saved!');
+    } else if (this.action === 'Cancel') {
+      console.log('❌ Cancelled!');
+    }
+  };
+}
+
+💬 Behavior:
+
+Click Save → shows “✅ Data Saved!”
+
+Click Cancel → shows “❌ Cancelled!”
