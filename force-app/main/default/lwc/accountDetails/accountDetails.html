@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Account Details">
+        <div class="slds-var-p-around_medium">
+            <!-- Loading indicator -->
+            <template if:true={isLoading}>
+                <p>⏳ Loading Account Details...</p>
+            </template>
+
+            <!-- Data Display -->
+            <template if:false={isLoading}>
+                <p><b>Account Name:</b> {accountName}</p>
+                <p><b>Phone:</b> {accountPhone}</p>
+            </template>
+
+            <lightning-button 
+                label="Refresh Data" 
+                onclick={refreshData} 
+                class="slds-m-top_small">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
