@@ -1,7 +1,10 @@
 <template>
-    <div style="border:1px solid gray; padding:10px; border-radius:8px;">
-        <p><strong>Message from Parent:</strong> {messageFromParent}</p>
-        <p><strong>Child Count:</strong> {count}</p>
-        <lightning-button label="Increment" onclick={handleIncrement}></lightning-button>
-    </div>
+    <lightning-record-view-form record-id={recordId} object-api-name={Contact}>
+        <lightning-output-field field-name="FirstName"
+        ></lightning-output-field>
+        <lightning-output-field field-name="LastName"></lightning-output-field>
+        <lightning-output-field field-name="Email"></lightning-output-field>
+        <lightning-output-field field-name="Phone"></lightning-output-field>
+
+    </lightning-record-view-form>
 </template>

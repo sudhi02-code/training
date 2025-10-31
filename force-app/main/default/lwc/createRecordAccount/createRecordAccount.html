@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title ='Account creation form'>
+        <lightning-input label ="Account Name" value={accountName} onchange={handleAccountNameChange}></lightning-input>
+        <lightning-input label ="Phone" value={phone} onchange={handlePhoneChange}></lightning-input>
+        <lightning-input label ="Website" value={website} onchange={handleWebsiteChange}></lightning-input>
+        <lightning-button label="Create Account" onclick={createAccount}></lightning-button>
+    </lightning-card>
+    
+</template>

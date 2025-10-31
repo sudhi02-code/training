@@ -1,9 +1,21 @@
 <template>
-    <div style="border:2px solid #0070d2; padding:10px; border-radius:8px;">
-        <p><strong>Parent Message:</strong> {parentMessage}</p>
-        <lightning-button label="Change Message" onclick={handleChangeMessage}></lightning-button>
+    <lightning-card title="LWC Component" icon-name="standard:account">
+            <p>Name:{name}</p>
+            <lightning-input lable="Name" onchange={handleChange}></lightning-input>
+            <lightning-button
+                label="Submit"
+                variant="brand"
+                onclick={handleSubmit}>
+            </lightning-button>
+        
 
-        <!-- Send message to child -->
-        <c-child-comp message-from-parent={parentMessage}></c-child-comp>
-    </div>
+            <lightning-input  type="Number" label="Enter First Number"   value={firstnumber} onchange={handlefirst}></lightning-input>
+            <lightning-input  type="Number" label="Enter Second Number"  value={secondnumber} onchange={handlesecond}></lightning-input>
+            <lightning-input  type="Number" label="Enter Third Number"   value={thirdnumber} onchange={handlethird}></lightning-input>
+            <lightning-button-group>
+                <lightning-button label ="Add" onclick={handleAdd}></lightning-button>
+                <lightning-button label ="Clear" onclick={handleClear}></lightning-button>
+                </lightning-button-group>
+    </lightning-card>
+
 </template>
