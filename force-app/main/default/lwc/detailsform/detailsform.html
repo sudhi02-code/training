@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Details Form" icon-name="standard:contact">
+        <div class="slds-grid slds-wrap slds-p-around_medium">
+
+            <!-- Row 1 -->
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning-input label="First Name" value={FirstName} onchange={handlefirst}></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning-input label="Last Name" value={LastName} onchange={handlelast}></lightning-input>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning-input label="Email" value={Email} onchange={handleemail}></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning-input label="Phone Number" value={Phone} onchange={handlephone}></lightning-input>
+            </div>
+        </div>
+
+        <!-- Button section -->
+        <div class="button-container">
+            <button class="custom-btn" onclick={handleSave}>Submit</button>
+        </div>
+    </lightning-card>
+</template>

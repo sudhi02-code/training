@@ -1,0 +1,13 @@
+<template>
+    
+    <lightning-card title="Search Accounts">
+    <lightning-button label="increase" onclick={handleIncrease} icon-name=utility:left></lightning-button>
+    <lightning-button label="decrease" onclick={handleDecrease} icon-name=utility:right></lightning-button>
+    </lightning-card>
+    <lightning-card>
+<lightning-input label ='employe name' value={ename} onchange={Empname}></lightning-input>
+<lightning-input label ='employe age' value={eage} onchange={Empage}></lightning-input>
+<lightning-input label ='employe department' value={edept} onchange={Empdep}></lightning-input>
+<lightning-button label='submit' onclick={handleSubmit}> </lightning-button>
+    </lightning-card>   
+</template>

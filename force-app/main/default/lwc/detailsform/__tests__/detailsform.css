@@ -1,0 +1,23 @@
+.button-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Sky blue background button */
+.custom-btn {
+    background-color: skyblue;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.custom-btn:hover {
+    background-color:black; /* appealing blue */
+    transform: scale(1.05);
+}

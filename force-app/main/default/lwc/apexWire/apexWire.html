@@ -1,9 +1,14 @@
 <template>
     <lightning-card title="apex wire">
+        <lightning-button label="delete" onclick={handleDelete}></lightning-button>
         <lightning-datatable 
             key-field="Id"
             data={AccountsData}
-            columns={col}
+            columns={col} 
+            onsave={handlesave}
+            draft-values={draftValues}
+            max-row-selection="1"
+            onrowselection={handleRowSelection}
         ></lightning-datatable>
     </lightning-card>
 </template>
